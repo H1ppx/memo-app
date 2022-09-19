@@ -1,0 +1,11 @@
+com/willchu/memoapp/data/service/SamplePersonRepository.class
+com/willchu/memoapp/Application.class
+com/willchu/memoapp/components/appnav/AppNavItem.class
+com/willchu/memoapp/views/MainLayout.class
+com/willchu/memoapp/components/appnav/AppNav.class
+com/willchu/memoapp/data/entity/AbstractEntity.class
+com/willchu/memoapp/views/memo/MemoView.class
+com/willchu/memoapp/views/memo/MemoView$PhoneNumberField.class
+com/willchu/memoapp/data/entity/SamplePerson.class
+com/willchu/memoapp/views/about/AboutView.class
+com/willchu/memoapp/data/service/SamplePersonService.class
