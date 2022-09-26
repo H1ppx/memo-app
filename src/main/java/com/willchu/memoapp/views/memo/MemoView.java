@@ -44,6 +44,7 @@ public class MemoView extends Div {
     private DatePicker dateOfMemo = new DatePicker("Date of Memorandum");
 
     private TextField subject = new TextField("Subject");
+
     private TextArea p1 = new TextArea("Paragraph 1");
     private TextArea p2 = new TextArea("Paragraph 2");
 
@@ -76,9 +77,24 @@ public class MemoView extends Div {
                     Notification.show("File created: " + latexFile.getName());
                     FileWriter fileWriter = new FileWriter(latexFile.getName());
                     PrintWriter printWriter = new PrintWriter(fileWriter);
-//                    mfr.addHeader(printWriter);
+                    mfr.generateTex(printWriter,
+                            firstName.getValue() + " " + lastName.getValue(),
+                            subject.getValue(),
+                            email.getValue(),
+                            phone.getValue(),
+                            dateOfMemo.getValue().toString(),
+                            p1.getValue(),
+                            p2.getValue());
                     printWriter.close();
 
+                    firstName.clear();
+                    lastName.clear();
+                    email.clear();
+                    phone.clear();
+                    dateOfMemo.clear();
+                    subject.clear();
+                    p1.clear();
+                    p2.clear();
                 } else {
                     Notification.show("File already exists.");
                 }
@@ -86,15 +102,6 @@ public class MemoView extends Div {
                 Notification.show("An error occurred.");
                 ioException.printStackTrace();
             }
-
-            firstName.clear();
-            lastName.clear();
-            email.clear();
-            phone.clear();
-            dateOfMemo.clear();
-            subject.clear();
-            p1.clear();
-            p2.clear();
         });
     }
 
@@ -164,7 +171,9 @@ public class MemoView extends Div {
 
     private class MFR{
 
-        public void generateTex(PrintWriter printWriter, String author, String subject){
+        public void generateTex(PrintWriter printWriter, String author, String subject,
+                                String email, String phone, String date,
+                                String p1, String p2){
             printWriter.println("\\RequirePackage[l2tabu, orthodox]{nag}");
             printWriter.println("\\documentclass[12pt,letterpaper]{article}");
             printWriter.println("\\usepackage[pdftex, pdfusetitle,colorlinks=false,pdfborder={0 0 0}]{hyperref}");
@@ -207,78 +216,59 @@ public class MemoView extends Div {
             printWriter.println("\\fancypagestyle{firststyle} {\\fancyhf{} \\fancyfoot{}}");
             printWriter.println("\\lhead{\\scriptsize\\OfficeSymbol\\\\ \\footnotesize \\textsc{subject}: \\Subject}");
             printWriter.println("\\fancyfoot[C]{\\thepage}"); // Line 87 on Army Latex File
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
-            printWriter.println("");
+            printWriter.println("\\newcommand{\\Author}{"+author+"}");
+            printWriter.println("\\newcommand{\\Subject}{"+subject+"}");
+            printWriter.println("\\newcommand{\\OfficeSymbol}{ATCC-BNN-NJRU}");
+            printWriter.println("\\newcommand{\\Date}{"+date+"}");
+            printWriter.println("\\newcommand{\\Keywords}{my first keyword, my first keyword, more keywords.}");
+            printWriter.println("\\hypersetup{%");
+            printWriter.println("pdftitle={\\Subject},%");
+            printWriter.println("pdfauthor={\\Author},%");
+            printWriter.println("pdfkeywords={\\Keywords}}%");
+            printWriter.println("\\begin{document}");
+            printWriter.println("\\begin{tikzpicture}[remember picture, overlay]");
+            printWriter.println("\\node[anchor=north west,inner sep=0pt,xshift=0.5in, yshift=-0.5in] at (current page.north west) { %");
+            printWriter.println("\\includegraphics[width=1in]{images/DOD-Seal}%");
+            printWriter.println("};%");
+            printWriter.println("\\end{tikzpicture}");
+            printWriter.println("\\begin{tikzpicture}[remember picture, overlay]");
+            printWriter.println("\\node[anchor=north west,inner sep=0pt,xshift=7in, yshift=-0.5in] at (current page.north west) { %");
+            printWriter.println("\\includegraphics[width=.75in]{images/Rutgers}%");
+            printWriter.println("};%");
+            printWriter.println("\\end{tikzpicture}"); // Line 140
+            printWriter.println("\\begin{tikzpicture}[remember picture, overlay]");
+            printWriter.println("\\setstretch{0.7}");
+            printWriter.println("\\fontfamily\\sfdefault\\selectfont");
+            printWriter.println("\\node[align=center,anchor=north,inner sep=0pt,yshift=-0.625in] at (current page.north) {");
+            printWriter.println("\\daletterhead{Department of the Army}");
+            printWriter.println(" \\letterhead{Department of Military Science}");
+            printWriter.println("\\letterhead{Rutgers University}");
+            printWriter.println("\\letterhead{157 College Avenue}");
+            printWriter.println("\\letterhead{New Brunswick  NJ 08901-8545}");
+            printWriter.println("};");
+            printWriter.println("\\end{tikzpicture}");
+            printWriter.println("\\vspace{30pt}\n");
+            printWriter.println("\\noindent\\textbox{\\scalefont{.9}\\OfficeSymbol\\hfill} \\textbox{\\hfill\\Date}");
+            printWriter.println("\\vspace{12pt}");
+            printWriter.println("\\memotype{Memorandum For Record}");
+            printWriter.println("\\vspace{12pt}");
+            printWriter.println("\\subject{\\Subject}\n");
+            printWriter.println("\\vspace{12pt}");
+            printWriter.println("\\thispagestyle{firststyle}");
+            printWriter.println("\\raggedright");
+            printWriter.println("\\begin{enumerate}[labelwidth=12pt,labelsep=4pt,leftmargin=0pt,itemindent=16pt,align=left]");
+            printWriter.println("\\item "+p1);
+            printWriter.println("\\item "+p2);
+            printWriter.println("\\item Point of contact for this memorandum is " + author + " at "+phone+ " or "+email);
+            printWriter.println("\\end{enumerate}");
+            printWriter.println("\\begin{flushright}");
+            printWriter.println("\\begin{Form}");
+            printWriter.println("\\sigField{My signature}{5cm}{1.5cm}");
+            printWriter.println("\\end{Form}");
+            printWriter.println("\\"+author);
+            printWriter.println("\\CDT,  USA");
+            printWriter.println("\\end{flushright}");
+            printWriter.println("\\end{document}");
         };
 
 

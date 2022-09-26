@@ -1,0 +1,18 @@
+{
+  "productionMode": false,
+  "useDeprecatedV14Bootstrapping": false,
+  "eagerServerLoad": false,
+  "npmFolder": "/Users/willchu/Desktop/memo-app",
+  "node.version": "v16.17.0",
+  "node.download.root": "https://nodejs.org/dist/",
+  "generatedFolder": "/Users/willchu/Desktop/memo-app/target/frontend",
+  "frontendFolder": "/Users/willchu/Desktop/memo-app/frontend",
+  "connect.javaSourceFolder": "/Users/willchu/Desktop/memo-app/src/main/java",
+  "javaResourceFolder": "/Users/willchu/Desktop/memo-app/src/main/resources",
+  "connect.applicationProperties": "/Users/willchu/Desktop/memo-app/src/main/resources/application.properties",
+  "connect.openApiFile": "/Users/willchu/Desktop/memo-app/target/generated-resources/openapi.json",
+  "project.frontend.generated": "/Users/willchu/Desktop/memo-app/frontend/generated",
+  "pnpm.enable": false,
+  "require.home.node": false,
+  "build.folder": "target"
+}

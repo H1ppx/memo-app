@@ -1,0 +1,98 @@
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[12pt,letterpaper]{article}
+\usepackage[pdftex, pdfusetitle,colorlinks=false,pdfborder={0 0 0}]{hyperref}
+\usepackage{graphicx}
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{scalefnt}
+\usepackage[english]{babel}
+\usepackage{blindtext}
+\usepackage[scaled]{helvet}
+\usepackage{times}
+\usepackage{eforms}
+
+\newcommand{\daletterhead}[1]{\fontsize{10pt}{10pt}\selectfont \textbf{\textsc{#1}}\\}
+\newcommand{\letterhead}[1]{ \fontsize{8pt}{5pt}\selectfont \textbf{\textsc{#1}}\\}
+\newcommand{\st}{\textsuperscript{st}}
+\newcommand{\nd}{\textsuperscript{nd}}
+\newcommand{\rd}{\textsuperscript{rd}}
+\newcommand{\thh}{\textsuperscript{th}}
+\newcommand{\memotype}[1]{\noindent\textsc{#1}}
+\newcommand{\subject}[1]{\noindent\textsc{Subject}: #1}
+\newcommand\textbox[1]{\parbox{.5\textwidth}{#1}}
+\usepackage{glossaries}
+\usepackage{relsize}
+\setacronymstyle{long-sm-short}
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\theenumi.}
+\renewcommand{\theenumii}{\alph{enumii}}
+\renewcommand{\labelenumii}{\theenumii.}
+\renewcommand{\theenumiii}{\arabic{enumiii}}
+\renewcommand{\labelenumiii}{(\theenumiii)}
+\renewcommand{\theenumiv}{\alph{enumiv}}
+\renewcommand{\labelenumiv}{(\theenumiv)}
+\usepackage{fancyhdr}
+\renewcommand{\headrulewidth}{0pt}
+\pagestyle{fancy}
+\fancypagestyle{firststyle} {\fancyhf{} \fancyfoot{}}
+\lhead{\scriptsize\OfficeSymbol\\ \footnotesize \textsc{subject}: \Subject}
+\fancyfoot[C]{\thepage}
+\newcommand{\Author}{Will Chu}
+\newcommand{\Subject}{Test}
+\newcommand{\OfficeSymbol}{ATCC-BNN-NJRU}
+\newcommand{\Date}{2022-09-19}
+\newcommand{\Keywords}{my first keyword, my first keyword, more keywords.}
+\hypersetup{%
+pdftitle={\Subject},%
+pdfauthor={\Author},%
+pdfkeywords={\Keywords}}%
+\begin{document}
+\begin{tikzpicture}[remember picture, overlay]
+\node[anchor=north west,inner sep=0pt,xshift=0.5in, yshift=-0.5in] at (current page.north west) { %
+\includegraphics[width=1in]{images/DOD-Seal}%
+};%
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture, overlay]
+\node[anchor=north west,inner sep=0pt,xshift=7in, yshift=-0.5in] at (current page.north west) { %
+\includegraphics[width=.75in]{images/Rutgers}%
+};%
+\end{tikzpicture}
+\begin{tikzpicture}[remember picture, overlay]
+\setstretch{0.7}
+\fontfamily\sfdefault\selectfont
+\node[align=center,anchor=north,inner sep=0pt,yshift=-0.625in] at (current page.north) {
+\daletterhead{Department of the Army}
+ \letterhead{Department of Military Science}
+\letterhead{Rutgers University}
+\letterhead{157 College Avenue}
+\letterhead{New Brunswick  NJ 08901-8545}
+};
+\end{tikzpicture}
+\vspace{30pt}
+
+\noindent\textbox{\scalefont{.9}\OfficeSymbol\hfill} \textbox{\hfill\Date}
+\vspace{12pt}
+\memotype{Memorandum For Record}
+\vspace{12pt}
+\subject{\Subject}
+
+\vspace{12pt}
+\thispagestyle{firststyle}
+\raggedright
+\begin{enumerate}[labelwidth=12pt,labelsep=4pt,leftmargin=0pt,itemindent=16pt,align=left]
+\item \blindtext
+\item \blindtext
+\item Point of contact for this memorandum is Will Chu at +1 8482189972 or wjc111@scarletmail.rutgers.edu
+\end{enumerate}
+\begin{flushright}
+\begin{Form}
+\sigField{My signature}{5cm}{1.5cm}
+\end{Form}
+Will Chu
+\\CDT,  USA
+\end{flushright}
+\end{document}
